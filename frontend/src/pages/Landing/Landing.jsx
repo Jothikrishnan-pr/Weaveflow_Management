@@ -38,7 +38,15 @@ const faqs = [
 const stack = [
   { group: 'Frontend', items: ['React 18', 'Vite', 'React Router', 'Axios'] },
   { group: 'Backend', items: ['Spring Boot 3', 'Spring Security', 'JWT', 'Spring Data JPA'] },
-  { group: 'Database', items: ['MySQL', 'Railway'] },
+  { 
+    group: 'Database', 
+    items: [
+      { name: 'MySQL', current: false },
+      { name: 'Aiven', current: false },
+      { name: 'Railway', current: false },
+      { name: 'TiDB Cloud', current: true }
+    ]
+  },
   { group: 'Hosting', items: ['Render (Web Service)', 'Render (Static Site)'] },
 ]
 
@@ -136,6 +144,8 @@ export default function Landing() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
   const [flowStep, setFlowStep] = useState(0)
+    const [isNavHidden, setIsNavHidden] = useState(false) // Add this state
+  const [lastScrollY, setLastScrollY] = useState(0) // Add this state
   const heroRef = useRef(null)
   const threadsRef = useRef(null)
   const mockupRef = useRef(null)
@@ -151,12 +161,28 @@ export default function Landing() {
         const max = h.scrollHeight - h.clientHeight
         setProgress(max > 0 ? (scrollTop / max) * 100 : 0)
         setScrolled(scrollTop > 40)
+        
+        // Auto-hide navbar logic
+        if (scrollTop > 100) { // Only hide after scrolling past 100px
+          if (scrollTop > lastScrollY) {
+            // Scrolling down - hide navbar
+            setIsNavHidden(true)
+          } else {
+            // Scrolling up - show navbar
+            setIsNavHidden(false)
+          }
+        } else {
+          // At top of page - always show navbar
+          setIsNavHidden(false)
+        }
+        setLastScrollY(scrollTop)
+        
         ticking = false
       })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [lastScrollY]) // Add lastScrollY as dependency
 
   useEffect(() => {
     const hero = heroRef.current
@@ -183,7 +209,7 @@ export default function Landing() {
     <div className="landing">
       <div className="scroll-progress" style={{ width: `${progress}%` }} />
 
-      <header className={`landing-nav ${scrolled ? 'is-scrolled' : ''}`}>
+      <header className={`landing-nav ${scrolled ? 'is-scrolled' : ''} ${isNavHidden ? 'is-hidden' : ''}`}>
         <div className="landing-nav-inner">
           <div className="landing-brand">
             <span className="brand-mark">WF</span>
@@ -270,7 +296,7 @@ export default function Landing() {
                 <div className="mockup-stats">
                   <div className="mockup-stat">
                     <span className="mockup-stat-label">Rate</span>
-                    <span className="mockup-stat-value">₹85</span>
+                    <span className="mockup-stat-value">₹9600</span>
                   </div>
                   <div className="mockup-stat">
                     <span className="mockup-stat-label">Target</span>
@@ -395,9 +421,22 @@ export default function Landing() {
               <Reveal key={group.group} className="stack-card" style={{ transitionDelay: `${i * 80}ms` }}>
                 <h3 className="stack-group">{group.group}</h3>
                 <div className="stack-chips">
-                  {group.items.map((item) => (
-                    <span className="stack-chip" key={item}>{item}</span>
-                  ))}
+                  {group.items.map((item) => {
+                    // Handle both string and object items
+                    const itemName = typeof item === 'object' ? item.name : item
+                    const isCurrent = typeof item === 'object' ? item.current : false
+                    
+                    return (
+                      <span className={`stack-chip ${isCurrent ? 'is-current' : ''}`} key={itemName}>
+                        {itemName}
+                        {isCurrent && (
+                          <span className="stack-chip-tick">
+                            <Icon name="check" />
+                          </span>
+                        )}
+                      </span>
+                    )
+                  })}
                 </div>
               </Reveal>
             ))}
@@ -502,7 +541,7 @@ export default function Landing() {
           <p className="footer-credit">
             © 2026 · Developed by Jothikrishnan P R ·{' '}
             <a
-              href="https://github.com/Jothikrishnan-pr/weaver_project"
+              href="https://github.com/Jothikrishnan-pr/Weaveflow_Management"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-github"

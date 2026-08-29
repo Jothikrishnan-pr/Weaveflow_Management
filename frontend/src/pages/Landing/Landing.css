@@ -52,7 +52,13 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 100px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-  transition: top 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transition: top 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.4s ease, opacity 0.4s ease;
+}
+
+.landing-nav.is-hidden {
+  transform: translateX(-50%) translateY(-120px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .landing-nav.is-scrolled {
@@ -60,7 +66,6 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
   background: rgba(27, 33, 64, 0.72);
 }
-
 .landing-nav-inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -974,15 +979,44 @@
   gap: 8px;
 }
 
+/* ---------- Stack chip with current indicator ---------- */
 .stack-chip {
   font-size: 13px;
   color: var(--ink-900);
   padding: 6px 0;
   border-bottom: 1px solid var(--ivory-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .stack-chip:last-child {
   border-bottom: none;
+}
+
+.stack-chip.is-current {
+  color: var(--gold-600);
+  font-weight: 600;
+}
+
+.stack-chip-tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--gold-600);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.stack-chip-tick svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 3;
 }
 
 /* ---------- Comparison ---------- */
