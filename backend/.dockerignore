@@ -1,0 +1,34 @@
+# Inside backend folder
+cat > .dockerignore << 'EOF'
+.git/
+.gitignore
+target/
+*.jar
+*.war
+*.ear
+*.class
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+*.swp
+*.swo
+logs/
+*.log
+.DS_Store
+Thumbs.db
+Dockerfile
+.dockerignore
+.env
+*.env
+src/test/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+tmp/
+temp/
+*.tmp
+EOF

@@ -1,0 +1,30 @@
+# Build output
+target/
+
+# Secrets — never commit real DB credentials or JWT secrets
+application.properties
+application-local.properties
+application-secrets.properties
+*.env
+.env
+
+# Packaged artifacts
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
