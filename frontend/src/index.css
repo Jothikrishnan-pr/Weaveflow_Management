@@ -276,28 +276,28 @@ td {
   .form-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Login Styles (compact version from second file) ---------- */
+/* ---------- Login Styles (Ivory background from first file, compact spacing from second) ---------- */
 .login-screen {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--indigo-900);
+  background: var(--ivory-50);
+  padding: 20px;
 }
 
 .login-container {
   width: 100%;
   max-width: 420px;
   position: relative;
-  padding: 0 20px;
 }
 
-/* Back Button - Added from first file */
+/* Back Button */
 .login-back-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-600);
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -310,7 +310,7 @@ td {
 }
 
 .login-back-btn:hover {
-  color: var(--white);
+  color: var(--gold-600);
 }
 
 .login-back-btn svg {
@@ -321,8 +321,10 @@ td {
   transform: translateX(-3px);
 }
 
+/* Login Card */
 .login-card {
   background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 36px 32px;
   width: 100%;
@@ -332,7 +334,7 @@ td {
 .login-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
@@ -340,13 +342,13 @@ td {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: var(--gold-600);
   color: white;
   font-weight: 700;
-  font-size: 16px;
-  border-radius: 8px;
+  font-size: 18px;
+  border-radius: 10px;
   font-family: var(--font-display);
   flex-shrink: 0;
 }
@@ -354,35 +356,40 @@ td {
 .login-brand-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--indigo-950);
 }
 
 .login-brand-sub {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-400);
-  margin-top: 1px;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
 }
 
 .login-title {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   color: var(--indigo-950);
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
-/* Form Fields - compact spacing */
+/* Form Fields - Compact */
 .login-card .form-field {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.login-card .form-field:last-of-type {
+  margin-bottom: 20px;
 }
 
 .login-card .form-field label {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--ink-600);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .login-card .form-field input {
@@ -407,7 +414,7 @@ td {
   color: var(--ink-400);
 }
 
-/* Password Input with Toggle - Added from first file */
+/* Password Input with Toggle */
 .password-input-wrapper {
   position: relative;
   width: 100%;
@@ -441,15 +448,7 @@ td {
   outline: none;
 }
 
-/* Login Button */
-.login-card .btn {
-  width: 100%;
-  justify-content: center;
-  margin-top: 8px;
-  padding: 11px 18px;
-}
-
-/* Error Banner in login */
+/* Error Banner */
 .login-card .error-banner {
   background: var(--maroon-100);
   color: var(--maroon-700);
@@ -460,13 +459,21 @@ td {
   border: 1px solid rgba(139, 58, 58, 0.15);
 }
 
+/* Login Button */
+.login-card .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 11px 18px;
+  font-size: 14px;
+}
+
 /* Login Footer Links */
 .login-footer-links {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .login-footer-link {
@@ -495,13 +502,13 @@ td {
   }
 
   .login-brand .brand-mark {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
   }
 
   .login-brand-name {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .login-back-btn {
@@ -510,5 +517,10 @@ td {
 
   .login-container {
     padding: 0 16px;
+  }
+
+  .login-card .form-field input {
+    padding: 10px 12px;
+    font-size: 14px;
   }
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation, useSearchParams, Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
 export default function Login() {
@@ -12,7 +12,18 @@ export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+  const [searchParams] = useSearchParams()
   const redirectTo = location.state?.from || '/dashboard'
+
+  // Supports demo links like /login?u=demo_admin&p=admin%40123 — pre-fills
+  // the form so the visitor can see the credentials and press Sign in
+  // themselves, rather than logging them in silently without a click.
+  useEffect(() => {
+    const u = searchParams.get('u')
+    const p = searchParams.get('p')
+    if (u) setUsername(u)
+    if (p) setPassword(p)
+  }, [searchParams])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
