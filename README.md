@@ -212,4 +212,4 @@ All runtime configuration (DB credentials, JWT secret, CORS origin) is supplied 
 ## Author
 
 **Jothikrishnan P R**
-[github.com/Jothikrishnan-pr/weaver_project](https://github.com/Jothikrishnan-pr/weaver_project)
+[github.com/Jothikrishnan-pr/Weaveflow_Management](https://github.com/Jothikrishnan-pr/Weaveflow_Management)
